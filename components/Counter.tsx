@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@radix-ui/react-tooltip';
 
 const Counter = () => {
   const [count, setCount] = useState(0);
+  const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 100));
 
   const incrementCount = () => {
     setCount(count + 1);
   };
+
+  useEffect(() => {
+    setRandomNumber(Math.floor(Math.random() * 100));
+  }, [count]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -16,7 +21,7 @@ const Counter = () => {
           Increment
         </TooltipTrigger>
         <TooltipContent>
-          {`Random number: ${Math.floor(Math.random() * 100)}`}
+          {`Random number: ${randomNumber}`}
         </TooltipContent>
       </Tooltip>
     </div>
